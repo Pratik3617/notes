@@ -25,18 +25,22 @@
          notesObj = JSON.parse(notes);
      }
      let html = "";
+     /*
+     1. in line 35 when i was trying to mark the note as starred but it is working only in first note  
+     2.  and i was also trying to change the "add to starred" which is innertext as "Remove from starred" after click but its not working  
+     */
      notesObj.forEach(function(element, index) {
          html += `
             <div class="noteCard my-2 mx-2 card" style="width: 20rem;">
                     <div class="card-body" style="display: inline-block;">
                         <span style="display:flex;justify-content:space-between;">
                             <h5 class="card-title">Note ${index + 1}</h5>
-                            <span id="star" style="display:none;"><i class="fa fa-star" aria-hidden="true" style="color:#fffa65;font-size:20px;"></i></span>
+                            <span id="star" style="display:none;"><i class="fa fa-star" aria-hidden="true" style="color:#fffa65;font-size:20px;"></i></span>  
                         </span>
                         
                         <p class="card-text"> ${element}</p>
                         <button id="${index}" onclick="deleteNote(this.id)" class="btn btn-primary" style="margin-right:30px;border-radius:30px;height:35px;">Delete Note</button>
-                        <button id="${index}" onclick="Starred(this.id)" class="btn btn-primary" style="border-radius:30px;height:35px;">Add to Starred</button>
+                        <button id="${index}" onclick="Starred(this.id)" class="btn btn-primary btn1" style="border-radius:30px;height:35px;">Add to Starred</button>
                 
                     </div>
                 </div>`;
@@ -85,16 +89,17 @@
 
  function Starred(index) {
      var x = document.getElementById("star");
-     var y = document.getElementsById(index);
+     var y = document.getElementsByClassName("btn1");
      if (x.style.display === "none") {
          x.style.display = "block";
      } else {
          x.style.display = "none";
      }
-     if (y.value == "Add to Starred") {
-         y.value = "Remove from Starred";
+     //  trying to change 'Add to starred' -> Remove from starred
+     if (y.innerText == "Add to Starred") {
+         y.innerText == "Remove from Starred"
      } else {
-         y.value = "Add to Starred";
+         y.innerText == "Add to Starred"
      }
 
  }
