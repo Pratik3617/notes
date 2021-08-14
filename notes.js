@@ -40,7 +40,7 @@
                         
                         <p class="card-text"> ${element}</p>
                         <button id="${index}" onclick="deleteNote(this.id)" class="btn btn-primary" style="margin-right:55px;border-radius:30px;height:35px;font-size:13px;">Delete Note</button>
-                        <button id="${index}" onclick="Starred(this.id)" class="btn btn-primary btn1${index}" style="border-radius:30px;height:35px;font-size:13px;">Add to Starred</button>
+                        <button id="${index}" onclick="addStarred(this.id)" class="btn btn-primary btn1${index}"  style="border-radius:30px;height:35px;font-size:13px;">Add to Starred</button>
                 
                     </div>
                 </div>`;
@@ -88,23 +88,63 @@
      })
  })
 
- function Starred(index) {
+ function addStarred(index) {
      let z = "star" + index;
      let y = ".btn1" + index;
+     let notesElm = document.getElementById("notes");
      let Btn1 = document.querySelector(y);
-
      var x = document.getElementById(z);
      if (x.style.display == "none") {
          x.style.display = "block";
+         notesElm.value = "Starred";
          Btn1.innerText = "Remove Starred";
      } else {
          x.style.display = "none";
+         notesElm.value = "";
          Btn1.innerText = "Add to Starred";
      }
 
-
-
  }
+
+
+ function showStarred() {
+     let notes = localStorage.getItem("notes");
+     if (notes == null) {
+         notesObj = [];
+     } else {
+         notesObj = JSON.parse(notes);
+     }
+     let htm = "";
+
+     notesObj.forEach(function(element, index) {
+         let notesElm = document.getElementById("notes");
+         console.log(Btn1.value);
+         if (notesElm.value == "Starred") {
+             htm += `
+            <div class="noteCard my-2 mx-2 card" style="width: 20rem;">
+                    <div class="card-body" style="display: inline-block;">
+                        <span style="display:flex;justify-content:space-between;">
+                            <h5 class="card-title">Note ${index + 1}</h5>
+                            <span id="star${index}" style="display:none;"><i class="fa fa-star" aria-hidden="true" style="color:#fffa65;font-size:20px;"></i></span>  
+                        </span>
+                        
+                        <p class="card-text"> ${element}</p>
+                        <button id="${index}" onclick="deleteNote(this.id)" class="btn btn-primary" style="margin-right:55px;border-radius:30px;height:35px;font-size:13px;">Delete Note</button>
+                        <button id="${index}" onclick="addStarred(this.id)" class="btn btn-primary btn1${index}"  style="border-radius:30px;height:35px;font-size:13px;">Add to Starred</button>
+                
+                    </div>
+                </div>`;
+         }
+     });
+
+     let notesElm = document.getElementById("Starred");
+     if (notesObj.length != 0) {
+         notesElm.innerHTML = htm;
+     } else {
+         notesElm.innerHTML = `Nothing to show! Use "Add a Note" section above to add notes.`;
+     }
+ }
+
 
  /*
  Further Features:
