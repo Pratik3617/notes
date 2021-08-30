@@ -8,11 +8,6 @@
     <title>Notes App</title>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        * {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
 </head>
 
 <body>
@@ -26,12 +21,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home </a>
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                 </li>
 
-                <li class="nav-item active">
-                    <a class="nav-link" href="starredInterface.html">Starred </a>
-                </li>
+
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -45,10 +38,14 @@
     <div class="container my-3">
         <h1>Welcome To Magic Notes</h1>
         <div class="card">
-            <div class="card-body star">
+            <div class="card-body">
+                <div class="form-group">
+                    <h5 class="card-title">Add title</h5>
+                    <input type="text" class="form-control" id="addTitle" aria-describedby="title" placeholder="Enter title">
+                </div>
                 <h5 class="card-title">Add a note</h5>
                 <div class="form-group">
-                    <textarea placeholder="write your text......" class="form-control" id="addTxt" rows="3"></textarea>
+                    <textarea class="form-control" id="addTxt" rows="3"></textarea>
                 </div>
                 <button class="btn btn-primary" id="addBtn">Add Note</button>
             </div>
